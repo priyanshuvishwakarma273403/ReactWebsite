@@ -158,9 +158,9 @@ const Navbar = () => {
                 )}
 
                 {session ? (
-                    <button onClick={() => signOut()} className="text-red-500 font-bold uppercase tracking-widest mt-4">Sign Out</button>
+                    <button onClick={() => signOut()} className="px-10 py-4 border border-red-500/50 text-red-500 font-bold uppercase tracking-[0.3em] rounded-full hover:bg-red-500 hover:text-white transition-all">Sign Out</button>
                 ) : (
-                    <button onClick={() => signIn('google')} className="px-10 py-4 bg-white text-black font-black uppercase tracking-widest rounded-full">Sign In</button>
+                    <button onClick={() => signIn('google')} className="px-12 py-5 bg-white text-black font-black uppercase tracking-[0.3em] rounded-full shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105 transition-all">Sign In</button>
                 )}
             </div>
         </>

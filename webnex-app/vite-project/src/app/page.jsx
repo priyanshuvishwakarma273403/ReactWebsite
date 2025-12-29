@@ -99,7 +99,7 @@ const Home = () => {
             {/* BACKGROUND LAYER: Cinematic Static & Grid */}
             <div className="fixed inset-0 pointer-events-none z-0">
                 <div className="absolute inset-0 bg-white/[0.02] opacity-[0.15] brightness-50"></div>
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_70%,transparent_100%)]"></div>
+                <div className="absolute inset-0 hidden md:block bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_70%,transparent_100%)]"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#02020a]/50 to-[#02020a]"></div>
             </div>
 
@@ -111,11 +111,11 @@ const Home = () => {
 
             {/* SUBTLE FLOATING CODE - Refined as Background Decor */}
             <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none">
-                <div className="floating-code absolute top-[15%] left-[8%] font-mono text-[10px] text-[#39ff14]/10 border-l border-[#39ff14]/20 pl-4 py-2">
+                <div className="floating-code absolute top-[15%] left-[8%] hidden md:block font-mono text-[10px] text-[#39ff14]/10 border-l border-[#39ff14]/20 pl-4 py-2">
                     package com.webnex.core;<br />
                     public class Architecture {'{'} ... {'}'}
                 </div>
-                <div className="floating-code absolute top-[45%] right-[10%] font-mono text-[10px] text-purple-500/10 border-r border-purple-500/20 pr-4 py-2">
+                <div className="floating-code absolute top-[45%] right-[10%] hidden md:block font-mono text-[10px] text-purple-500/10 border-r border-purple-500/20 pr-4 py-2">
                     import {'{'} motion {'}'} from "framer-motion";<br />
                     const Hero = () =&gt; {'{'} ... {'}'}
                 </div>
@@ -135,9 +135,9 @@ const Home = () => {
                         <span className="text-[10px] font-mono tracking-[0.4em] uppercase text-gray-400">System Status: Optimal</span>
                     </div>
 
-                    <h1 className="hero-main-text flex flex-col text-[13vw] leading-[0.8] font-black uppercase tracking-tighter filter drop-shadow-[0_0_50px_rgba(255,255,255,0.05)]">
+                    <h1 className="hero-main-text flex flex-col text-7xl sm:text-8xl md:text-[14vw] leading-[0.85] md:leading-[0.8] font-black uppercase tracking-tighter filter drop-shadow-[0_0_50px_rgba(255,255,255,0.05)]">
                         <span className="text-white">WebNex</span>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-white to-[#39ff14] animate-gradient-x py-2">Agency</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-white to-[#39ff14] animate-gradient-x py-2 md:py-4">Agency</span>
                     </h1>
 
                     <div className="hero-cta mt-12 flex flex-col items-center">

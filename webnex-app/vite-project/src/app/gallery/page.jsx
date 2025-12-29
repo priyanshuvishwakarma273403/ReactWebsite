@@ -16,11 +16,30 @@ const Gallery = () => {
 
     // Gallery Items Data - using public assets
     const galleryItems = [
-        { type: 'image', src: "/assets/img1.png", title: 'Futuristic Dashboard', category: 'UI/UX Design', aspect: 'landscape' },
-        { type: 'image', src: "/assets/img2.png", title: 'Neon Cityscape', category: 'Digital Art', aspect: 'landscape' },
-        { type: 'image', src: "/assets/img3.png", title: 'Abstract Geometry', category: '3D Visualization', aspect: 'square' },
-        { type: 'image', src: "/assets/img4.png", title: 'Mobile Banking App', category: 'App Design', aspect: 'portrait' }
-        // ... (Truncated list for brevity, can populate full list later)
+        { type: 'image', src: "/assets/img1.png", title: 'Neural Network Interface', category: 'Backend Systems', aspect: 'landscape' },
+        { type: 'image', src: "/assets/img2.png", title: 'Cyberpunk Metropolis', category: 'Design Concept', aspect: 'portrait' },
+        { type: 'image', src: "/assets/img3.png", title: 'Liquid Motion Design', category: 'Animation', aspect: 'square' },
+        { type: 'image', src: "/assets/img4.png", title: 'Next-Gen Dashboard', category: 'UI/UX Design', aspect: 'landscape' },
+        { type: 'image', src: "/assets/img5.png", title: 'Organic Code Flow', category: 'Web App', aspect: 'portrait' },
+        { type: 'image', src: "/assets/img6.png", title: 'Holographic Data', category: 'Visualization', aspect: 'square' },
+        { type: 'image', src: "/assets/img7.png", title: 'Monolithic Structure', category: 'Architecture', aspect: 'landscape' },
+        { type: 'image', src: "/assets/img8.png", title: 'Infinite Loop UI', category: 'Experience', aspect: 'portrait' },
+        { type: 'image', src: "/assets/img9.png", title: 'Digital Splicing', category: 'Editing', aspect: 'square' },
+        { type: 'image', src: "/assets/img11.png", title: 'Quantum Encryption', category: 'Security', aspect: 'landscape' },
+        { type: 'image', src: "/assets/img12.png", title: 'Void Interface', category: 'Minimalism', aspect: 'portrait' },
+        { type: 'image', src: "/assets/img13.png", title: 'Synthetic Reality', category: 'VR/AR', aspect: 'square' },
+        { type: 'image', src: "/assets/img14.png", title: 'Neural Pathway', category: 'Bio-Tech', aspect: 'landscape' },
+        { type: 'image', src: "/assets/img15.png", title: 'Silicon Pulse', category: 'Hardware', aspect: 'portrait' },
+        { type: 'image', src: "/assets/img16.png", title: 'Core Processor', category: 'Architecture', aspect: 'square' },
+        { type: 'image', src: "/assets/img17.png", title: 'Data Stream', category: 'Cloud', aspect: 'landscape' },
+        { type: 'image', src: "/assets/img18.png", title: 'Ghost in Machine', category: 'AI', aspect: 'portrait' },
+        { type: 'image', src: "/assets/img19.png", title: 'Vector Space', category: 'Geometry', aspect: 'square' },
+        { type: 'image', src: "/assets/img20.png", title: 'Plasma Grid', category: 'Energy', aspect: 'landscape' },
+        { type: 'image', src: "/assets/img21.png", title: 'Binary Sunset', category: 'Concept', aspect: 'portrait' },
+        { type: 'image', src: "/assets/img22.png", title: 'Echo UI', category: 'Interface', aspect: 'square' },
+        { type: 'image', src: "/assets/img23.png", title: 'Signal Noise', category: 'Signal', aspect: 'landscape' },
+        { type: 'image', src: "/assets/img24.png", title: 'Infinity Arch', category: 'Logic', aspect: 'portrait' },
+        { type: 'image', src: "/assets/img25.png", title: 'Terminal Flow', category: 'System', aspect: 'square' }
     ];
 
     useEffect(() => {
@@ -67,7 +86,7 @@ const Gallery = () => {
                     </h2>
                 </div>
 
-                <div className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6">
+                <div className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-6 md:space-y-6">
                     {galleryItems.map((item, i) => (
                         <div key={i} ref={el => itemsRef.current[i] = el} className="break-inside-avoid relative group overflow-hidden rounded-lg cursor-pointer" onClick={() => item.type === 'image' && setLightboxImage(item)}>
                             <div className={`w-full ${getAspectClass(item.aspect)} relative overflow-hidden bg-gray-900`}>
