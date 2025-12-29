@@ -19,35 +19,58 @@ const Home = () => {
         const ctx = gsap.context(() => {
             // Hero Animations
             const tl = gsap.timeline();
-            tl.from(".hero-line", { scaleX: 0, duration: 1, ease: "power4.out" })
-                .from(".hero-tech-text", { y: 100, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power2.out" })
-                .from(".hero-main-text", { scale: 0.8, opacity: 0, duration: 1.2, ease: "expo.out" }, "-=0.5")
-                .from(".floating-code", { y: 20, opacity: 0, duration: 1, stagger: 0.2, ease: "power2.out" }, "-=1");
+            tl.from(".hero-line", { scaleX: 0, duration: 1.5, ease: "expo.out" })
+                .from(".hero-tech-tag", { y: -20, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=1")
+                .from(".hero-main-text span", {
+                    y: 100,
+                    opacity: 0,
+                    duration: 1.2,
+                    stagger: 0.1,
+                    ease: "expo.out"
+                }, "-=0.8")
+                .from(".floating-code", {
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 1.5,
+                    stagger: 0.2,
+                    ease: "power2.out"
+                }, "-=1")
+                .from(".hero-cta", { y: 30, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.5");
 
-            // Mouse Move Parallax
+            // Mouse Parallax & Magnetic Effect
             const handleMouseMove = (e) => {
                 const { clientX, clientY } = e;
-                const xPos = (clientX / window.innerWidth - 0.5) * 40;
-                const yPos = (clientY / window.innerHeight - 0.5) * 40;
+                const xPos = (clientX / window.innerWidth - 0.5);
+                const yPos = (clientY / window.innerHeight - 0.5);
 
-                gsap.to(".hero-main-text", {
-                    x: xPos,
-                    y: yPos,
+                // Subtle Tilt for the whole section
+                gsap.to(".hero-content-wrapper", {
+                    rotationY: xPos * 10,
+                    rotationX: -yPos * 10,
                     duration: 1,
                     ease: "power2.out"
                 });
 
+                // Parallax for blobs
                 gsap.to(".aurora-blob", {
-                    x: xPos * -1.5,
-                    y: yPos * -1.5,
+                    x: xPos * -100,
+                    y: yPos * -100,
                     duration: 2,
+                    ease: "power2.out"
+                });
+
+                // Subtle movement for floating code
+                gsap.to(".floating-code", {
+                    x: (i) => (i % 2 === 0 ? xPos * 50 : xPos * -50),
+                    y: (i) => (i % 2 === 0 ? yPos * 50 : yPos * -50),
+                    duration: 1.5,
                     ease: "power2.out"
                 });
             };
 
             window.addEventListener('mousemove', handleMouseMove);
 
-            // Stats
+            // Stats Counter
             ScrollTrigger.create({
                 trigger: "#stats-section",
                 start: "top 80%",
@@ -55,8 +78,8 @@ const Home = () => {
                     const obj = { c: 0, p: 0, k: 0 };
                     gsap.to(obj, {
                         c: 50, p: 120, k: 5000,
-                        duration: 2,
-                        ease: "power2.out",
+                        duration: 3,
+                        ease: "expo.out",
                         onUpdate: () => setCounts({
                             clients: Math.round(obj.c),
                             projects: Math.round(obj.p),
@@ -71,66 +94,76 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="w-full bg-black text-white overflow-hidden font-outfit" ref={heroRef}>
+        <div className="w-full bg-[#02020a] text-white overflow-hidden font-outfit" ref={heroRef}>
 
-            {/* Background Noise & Grain */}
-            <div className="fixed inset-0 bg-grain opacity-20 pointer-events-none z-[1]"></div>
-
-            {/* Dynamic Aurora BG */}
-            <div className="fixed inset-0 aurora-bg z-0 opacity-40">
-                <div className="aurora-blob w-[800px] h-[800px] bg-purple-600 top-[-20%] left-[-20%] rounded-full blur-[150px] animate-blob"></div>
-                <div className="aurora-blob w-[600px] h-[600px] bg-[#39ff14] bottom-[-20%] right-[-20%] rounded-full blur-[150px] animate-blob opacity-20" style={{ animationDelay: '-5s' }}></div>
+            {/* BACKGROUND LAYER: Cinematic Static & Grid */}
+            <div className="fixed inset-0 pointer-events-none z-0">
+                <div className="absolute inset-0 bg-white/[0.02] opacity-[0.15] brightness-50"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_70%,transparent_100%)]"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#02020a]/50 to-[#02020a]"></div>
             </div>
 
-            {/* Floating Code Elements */}
-            <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-20">
-                <div className="floating-code absolute top-[15%] left-[10%] font-mono text-xs text-[#39ff14]">public class WebNex {'{'}</div>
-                <div className="floating-code absolute top-[40%] right-[15%] font-mono text-xs text-purple-500">import {'{'} gsap {'}'} from 'gsap';</div>
-                <div className="floating-code absolute bottom-[20%] left-[20%] font-mono text-xs text-blue-400">await dbConnect();</div>
-                <div className="floating-code absolute top-[60%] left-[5%] font-mono text-xs text-orange-400">const [data, setData] = useState();</div>
+            {/* Aurora Glows */}
+            <div className="fixed inset-0 z-0 opacity-30">
+                <div className="aurora-blob w-[800px] h-[800px] bg-purple-600/40 top-[-20%] left-[-20%] rounded-full blur-[180px]"></div>
+                <div className="aurora-blob w-[600px] h-[600px] bg-[#39ff14]/20 bottom-[-20%] right-[-20%] rounded-full blur-[180px]"></div>
             </div>
 
-            {/* HERO SECTION ULTRA */}
-            <section className="min-h-screen relative flex flex-col justify-center items-center px-4 pt-20 z-10 overflow-hidden">
+            {/* SUBTLE FLOATING CODE - Refined as Background Decor */}
+            <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none">
+                <div className="floating-code absolute top-[15%] left-[8%] font-mono text-[10px] text-[#39ff14]/10 border-l border-[#39ff14]/20 pl-4 py-2">
+                    package com.webnex.core;<br />
+                    public class Architecture {'{'} ... {'}'}
+                </div>
+                <div className="floating-code absolute top-[45%] right-[10%] font-mono text-[10px] text-purple-500/10 border-r border-purple-500/20 pr-4 py-2">
+                    import {'{'} motion {'}'} from "framer-motion";<br />
+                    const Hero = () =&gt; {'{'} ... {'}'}
+                </div>
+                <div className="floating-code absolute bottom-[15%] left-[15%] font-mono text-[10px] text-blue-500/10 opacity-40">
+                    &lt;Canvas camera={'{'}{'{'} fov: 75 {'}'}{'}'} /&gt;
+                </div>
+            </div>
 
-                {/* Decorative Lines */}
-                <div className="hero-line absolute top-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#39ff14] to-transparent opacity-50"></div>
-                <div className="hero-line absolute bottom-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50" style={{ animationDelay: '0.2s' }}></div>
+            {/* HERO SECTION */}
+            <section className="min-h-screen relative flex flex-col justify-center items-center px-4 pt-20 z-10 [perspective:1000px]">
 
-                <div className="text-center max-w-[90rem] mx-auto relative">
-                    <div className="flex justify-between items-center w-full absolute top-0 left-0 -translate-y-24 hidden md:flex opacity-50 font-mono text-xs">
-                        <span>SYSTEM: ONLINE</span>
-                        <span>LOC: 12.9716° N, 77.5946° E</span>
-                        <span>STATUS: READY</span>
+                <div className="hero-content-wrapper text-center max-w-[90rem] mx-auto relative transition-transform duration-200">
+
+                    {/* Decorative Top Label */}
+                    <div className="hero-tech-tag inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-12">
+                        <span className="w-2 h-2 rounded-full bg-[#39ff14] animate-pulse"></span>
+                        <span className="text-[10px] font-mono tracking-[0.4em] uppercase text-gray-400">System Status: Optimal</span>
                     </div>
 
-                    <h2 className="hero-tech-text text-[#39ff14] font-mono tracking-[0.5em] text-sm md:text-lg mb-8 uppercase animate-pulse">
-                        Next Gen Digital Architecture
-                    </h2>
-
-                    <h1 className="hero-main-text text-white text-[12vw] leading-[0.85] font-black uppercase font-tech tracking-tighter relative z-20 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">
-                        WebNex <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5b21b6] via-white to-[#39ff14] animate-gradient-x">Agency</span>
+                    <h1 className="hero-main-text flex flex-col text-[13vw] leading-[0.8] font-black uppercase tracking-tighter filter drop-shadow-[0_0_50px_rgba(255,255,255,0.05)]">
+                        <span className="text-white">WebNex</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-white to-[#39ff14] animate-gradient-x py-2">Agency</span>
                     </h1>
 
-                    <div className="mt-12 flex flex-col items-center">
-                        <p className="hero-tech-text text-xl md:text-2xl text-gray-300 max-w-2xl text-center font-light mb-12">
-                            We fuse <span className="font-bold text-white bg-purple-600 px-2 italic">Java Power</span> with <span className="font-bold text-black bg-[#39ff14] px-2 italic">Design Chaos</span>.
+                    <div className="hero-cta mt-12 flex flex-col items-center">
+                        <p className="text-lg md:text-xl text-gray-400 max-w-xl text-center font-light mb-12 leading-relaxed">
+                            We fuse <span className="text-white font-medium border-b border-[#39ff14]/50">Java Power</span> with
+                            <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 px-1">Design Chaos</span>
+                            to build iconic digital architecture.
                         </p>
 
-                        <button className="group relative px-10 py-5 bg-white text-black font-black text-xl uppercase tracking-widest overflow-hidden hover:scale-105 transition-transform duration-300 shadow-[0_0_40px_rgba(255,255,255,0.3)]">
-                            <span className="relative z-10 group-hover:text-white transition-colors">Start Project</span>
-                            <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"></div>
+                        <button className="group relative px-12 py-5 bg-white text-black font-black text-sm uppercase tracking-[0.3em] overflow-hidden transition-all duration-500 hover:tracking-[0.5em] shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+                            <span className="relative z-10 group-hover:text-white transition-colors duration-500">Start Project</span>
+                            <div className="absolute inset-0 bg-black translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 z-0"></div>
                         </button>
                     </div>
                 </div>
+
+                {/* Vertical Scroll Indicator */}
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30">
+                    <span className="text-[10px] font-mono uppercase tracking-[0.5em] [writing-mode:vertical-lr] mb-8">Scroll</span>
+                    <div className="w-[1px] h-20 bg-gradient-to-b from-[#39ff14] to-transparent animate-bounce"></div>
+                </div>
             </section>
 
-            {/* SKILLS MARQUEE - Neon Style */}
             <SkillsMarquee />
 
-            {/* STATS SECTION - Redesigned */}
-            <section id="stats-section" className="py-32 px-6 relative z-10 border-t border-white/10">
+            <section id="stats-section" className="py-40 px-6 relative z-10 border-t border-white/5 bg-[#02020a]">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
                     {[
                         { label: "Active Users", value: counts.clients + "K+" },
