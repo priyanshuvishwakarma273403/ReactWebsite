@@ -2,6 +2,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowUpRight } from 'lucide-react';
+import { FaJava, FaReact, FaCube, FaAws, FaShieldAlt } from 'react-icons/fa';
+import { SiFramer } from 'react-icons/si';
 import Testimonials from '@/components/Testimonials';
 import SkillsMarquee from '@/components/SkillsMarquee';
 import SkillDetailModal from '@/components/SkillDetailModal';
@@ -141,15 +144,15 @@ const Home = () => {
                     </h1>
 
                     <div className="hero-cta mt-12 flex flex-col items-center">
-                        <p className="text-lg md:text-xl text-gray-400 max-w-xl text-center font-light mb-12 leading-relaxed">
+                        <p className="text-lg md:text-xl text-gray-400 max-w-xl text-center font-light mb-8 leading-relaxed">
                             We fuse <span className="text-white font-medium border-b border-[#39ff14]/50">Java Power</span> with
                             <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 px-1">Design Chaos</span>
                             to build iconic digital architecture.
                         </p>
 
-                        <button className="group relative px-12 py-5 bg-white text-black font-black text-sm uppercase tracking-[0.3em] overflow-hidden transition-all duration-500 hover:tracking-[0.5em] shadow-[0_0_40px_rgba(255,255,255,0.2)]">
-                            <span className="relative z-10 group-hover:text-white transition-colors duration-500">Start Project</span>
-                            <div className="absolute inset-0 bg-black translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 z-0"></div>
+                        <button className="group relative px-10 py-4 bg-gradient-to-r from-purple-600/20 via-[#39ff14]/10 to-cyan-500/20 text-white border-2 border-[#39ff14] font-black text-sm uppercase tracking-[0.25em] overflow-hidden transition-all duration-500 rounded-full hover:bg-gradient-to-r hover:from-[#39ff14] hover:via-[#39ff14] hover:to-[#39ff14] hover:text-black hover:tracking-[0.35em] hover:scale-105 hover:border-white shadow-[0_0_40px_rgba(57,255,20,0.4),0_0_80px_rgba(147,51,234,0.2)] hover:shadow-[0_0_60px_rgba(57,255,20,0.8),0_0_120px_rgba(147,51,234,0.4)] backdrop-blur-md">
+                            <span className="relative z-10 transition-all duration-500 bg-clip-text text-transparent bg-gradient-to-r from-[#39ff14] via-white to-cyan-400 group-hover:from-black group-hover:via-black group-hover:to-black">Start Project</span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 via-transparent to-cyan-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl"></div>
                         </button>
                     </div>
                 </div>
@@ -198,13 +201,13 @@ const Home = () => {
 
                             {/* Quick Stats */}
                             <div className="grid grid-cols-2 gap-6 min-w-[280px]">
-                                <div className="bg-white/5 border border-white/10 rounded-lg p-4 hover:border-[#39ff14]/50 transition-colors">
-                                    <div className="text-4xl font-black text-[#39ff14] mb-1">6</div>
-                                    <div className="text-xs text-gray-500 uppercase tracking-wider">Core Services</div>
+                                <div className="bg-gradient-to-br from-[#39ff14]/10 to-transparent border border-white/10 rounded-2xl p-4 hover:border-[#39ff14] hover:shadow-[0_0_30px_rgba(57,255,20,0.2)] hover:scale-105 transition-all duration-300 backdrop-blur-sm group cursor-pointer">
+                                    <div className="text-4xl font-black text-[#39ff14] mb-1 group-hover:drop-shadow-[0_0_10px_rgba(57,255,20,0.8)] transition-all">6</div>
+                                    <div className="text-xs text-gray-500 uppercase tracking-wider group-hover:text-gray-300 transition-colors">Core Services</div>
                                 </div>
-                                <div className="bg-white/5 border border-white/10 rounded-lg p-4 hover:border-purple-500/50 transition-colors">
-                                    <div className="text-4xl font-black text-purple-500 mb-1">50+</div>
-                                    <div className="text-xs text-gray-500 uppercase tracking-wider">Happy Clients</div>
+                                <div className="bg-gradient-to-br from-purple-600/10 to-transparent border border-white/10 rounded-2xl p-4 hover:border-purple-500 hover:shadow-[0_0_30px_rgba(147,51,234,0.2)] hover:scale-105 transition-all duration-300 backdrop-blur-sm group cursor-pointer">
+                                    <div className="text-4xl font-black text-purple-500 mb-1 group-hover:drop-shadow-[0_0_10px_rgba(147,51,234,0.8)] transition-all">50+</div>
+                                    <div className="text-xs text-gray-500 uppercase tracking-wider group-hover:text-gray-300 transition-colors">Happy Clients</div>
                                 </div>
                             </div>
                         </div>
@@ -214,7 +217,7 @@ const Home = () => {
                             {['Backend Development', 'Frontend Engineering', '3D & WebGL', 'UI/UX Design', 'Cloud Infrastructure', 'Security'].map((tag, i) => (
                                 <span
                                     key={i}
-                                    className="px-4 py-2 bg-black border border-white/20 rounded-full text-sm font-mono hover:border-[#39ff14] hover:text-[#39ff14] transition-all cursor-pointer"
+                                    className="px-4 py-2 bg-gradient-to-r from-white/5 to-transparent border border-white/20 rounded-full text-sm font-mono hover:border-[#39ff14] hover:text-[#39ff14] hover:bg-gradient-to-r hover:from-[#39ff14]/10 hover:to-purple-600/10 hover:shadow-[0_0_20px_rgba(57,255,20,0.2)] hover:scale-105 transition-all duration-300 cursor-pointer backdrop-blur-sm"
                                 >
                                     {tag}
                                 </span>
@@ -234,29 +237,38 @@ const Home = () => {
                         Our Capabilities
                     </h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[
-                            { t: "Full Stack Java", d: "Enterprise Grade Systems", c: "bg-blue-900/20" },
-                            { t: "React & Next.js", d: "High Performance Web", c: "bg-purple-900/20" },
-                            { t: "WebGL & 3D", d: "Immersive Experiences", c: "bg-green-900/20" },
-                            { t: "Motion Design", d: "Visual Storytelling", c: "bg-pink-900/20" },
-                            { t: "Cloud Ops", d: "AWS / Azure Scaling", c: "bg-orange-900/20" },
-                            { t: "Cyber Security", d: "Bank Grade Protection", c: "bg-red-900/20" }
+                            { t: "Full Stack Java", d: "Enterprise Grade Systems", c: "bg-blue-900/20", i: FaJava },
+                            { t: "React & Next.js", d: "High Performance Web", c: "bg-purple-900/20", i: FaReact },
+                            { t: "WebGL & 3D", d: "Immersive Experiences", c: "bg-green-900/20", i: FaCube },
+                            { t: "Motion Design", d: "Visual Storytelling", c: "bg-pink-900/20", i: SiFramer },
+                            { t: "Cloud Ops", d: "AWS / Azure Scaling", c: "bg-orange-900/20", i: FaAws },
+                            { t: "Cyber Security", d: "Bank Grade Protection", c: "bg-red-900/20", i: FaShieldAlt }
                         ].map((s, i) => (
                             <div
                                 key={i}
-                                className={`h-80 relative group overflow-hidden border border-white/10 ${s.c} backdrop-blur-sm cursor-pointer transition-all hover:border-[#39ff14]/50 hover:scale-[1.02]`}
+                                className={`h-80 relative group overflow-hidden border-2 border-white/10 ${s.c} backdrop-blur-md cursor-pointer transition-all duration-500 rounded-[2rem] hover:border-[#39ff14] hover:scale-[1.03] hover:shadow-[0_0_40px_rgba(57,255,20,0.3),0_0_80px_rgba(147,51,234,0.2)] hover:bg-gradient-to-br hover:from-[#39ff14]/10 hover:via-transparent hover:to-purple-600/10`}
                                 onClick={() => setSelectedSkill(s.t)}
                             >
-                                <div className="absolute inset-0 bg-black opacity-80 group-hover:opacity-40 transition-opacity duration-500"></div>
+                                <div className="absolute inset-0 bg-black opacity-85 group-hover:opacity-30 transition-opacity duration-500"></div>
 
-                                <div className="absolute bottom-0 left-0 p-8 w-full group-hover:-translate-y-4 transition-transform duration-500">
-                                    <div className="text-xs font-mono text-[#39ff14] mb-2 opacity-0 group-hover:opacity-100 transition-opacity">{(i + 1).toString().padStart(2, '0')} / SERVICE</div>
-                                    <h3 className="text-3xl font-bold uppercase text-white mb-2">{s.t}</h3>
-                                    <p className="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity delay-100 transform translate-y-4 group-hover:translate-y-0 duration-300">{s.d}</p>
+                                {/* Animated gradient overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#39ff14]/0 via-purple-500/0 to-cyan-500/0 group-hover:from-[#39ff14]/10 group-hover:via-purple-500/5 group-hover:to-cyan-500/10 transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
+
+                                <div className="absolute top-8 left-8 transition-all duration-500 group-hover:scale-110 group-hover:rotate-12">
+                                    <s.i className="w-16 h-16 text-white/30 group-hover:text-[#39ff14] transition-all duration-500 drop-shadow-[0_0_0px_rgba(57,255,20,0)] group-hover:drop-shadow-[0_0_20px_rgba(57,255,20,0.8)]" strokeWidth={1.5} />
                                 </div>
 
-                                <div className="absolute top-4 right-4 text-4xl opacity-50 group-hover:opacity-100 group-hover:text-[#39ff14] transition-all duration-300 group-hover:rotate-45 group-hover:scale-125">↗</div>
+                                <div className="absolute bottom-0 left-0 p-8 w-full group-hover:-translate-y-4 transition-transform duration-500">
+                                    <div className="text-xs font-mono text-[#39ff14] mb-2 opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_10px_rgba(57,255,20,0.8)]">{(i + 1).toString().padStart(2, '0')} / SERVICE</div>
+                                    <h3 className="text-3xl font-bold uppercase text-white mb-2 group-hover:text-[#39ff14] transition-colors duration-300">{s.t}</h3>
+                                    <p className="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity delay-100 transform translate-y-4 group-hover:translate-y-0 duration-300 group-hover:text-gray-200">{s.d}</p>
+                                </div>
+
+                                <div className="absolute top-4 right-4 text-4xl opacity-50 group-hover:opacity-100 group-hover:text-[#39ff14] transition-all duration-300 group-hover:rotate-45 group-hover:scale-125 drop-shadow-[0_0_0px_rgba(57,255,20,0)] group-hover:drop-shadow-[0_0_15px_rgba(57,255,20,0.8)]">
+                                    <ArrowUpRight className="w-8 h-8" />
+                                </div>
                             </div>
                         ))}
                     </div>

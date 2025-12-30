@@ -203,35 +203,38 @@ const SkillDetailModal = ({ skill, onClose }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fadeIn">
             {/* Backdrop */}
             <div
-                className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+                className="absolute inset-0 bg-black/95 backdrop-blur-md"
                 onClick={onClose}
             ></div>
 
             {/* Modal Content */}
-            <div className="relative bg-gradient-to-br from-black via-gray-900 to-black border-2 border-white/20 max-w-5xl w-full max-h-[90vh] overflow-y-auto rounded-none shadow-2xl animate-slideUp">
+            <div className="relative bg-gradient-to-br from-gray-900/95 via-black/95 to-gray-900/95 backdrop-blur-2xl border-2 border-[#39ff14]/30 max-w-5xl w-full max-h-[90vh] overflow-y-auto rounded-[2.5rem] shadow-[0_0_80px_rgba(57,255,20,0.3),0_0_120px_rgba(147,51,234,0.2)] animate-slideUp">
 
                 {/* Header with Gradient */}
-                <div className={`bg-gradient-to-r ${details.gradient} p-8 relative overflow-hidden`}>
-                    <div className="absolute inset-0 bg-black/40"></div>
+                <div className={`bg-gradient-to-r ${details.gradient} p-8 relative overflow-hidden rounded-t-[2.5rem]`}>
+                    <div className="absolute inset-0 bg-black/30 backdrop-blur-sm pointer-events-none"></div>
                     <button
-                        onClick={onClose}
-                        className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/80 rounded-full transition-all hover:rotate-90 duration-300"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onClose();
+                        }}
+                        className="absolute top-6 right-6 z-50 p-3 bg-black/60 hover:bg-[#39ff14] rounded-full transition-all hover:rotate-90 duration-300 border border-white/20 hover:border-[#39ff14] shadow-lg hover:shadow-[0_0_20px_rgba(57,255,20,0.6)] cursor-pointer"
                     >
-                        <X className="w-6 h-6 text-white" />
+                        <X className="w-6 h-6 text-white pointer-events-none" />
                     </button>
 
                     <div className="relative z-10">
                         <div className="mb-4">
                             {details.isImage ? (
-                                <img src={details.icon} alt={details.title} className="w-24 h-24 object-contain filter drop-shadow-lg" />
+                                <img src={details.icon} alt={details.title} className="w-24 h-24 object-contain filter drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]" />
                             ) : (
-                                <div className="text-6xl">{details.icon}</div>
+                                <div className="text-6xl drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">{details.icon}</div>
                             )}
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-black uppercase text-white mb-2 font-tech">
+                        <h2 className="text-4xl md:text-5xl font-black uppercase text-white mb-2 font-tech drop-shadow-lg">
                             {details.title}
                         </h2>
-                        <p className="text-xl text-white/90 font-light italic">
+                        <p className="text-xl text-white/95 font-light italic drop-shadow-md">
                             {details.tagline}
                         </p>
                     </div>
@@ -241,7 +244,7 @@ const SkillDetailModal = ({ skill, onClose }) => {
                 <div className="p-8 space-y-8">
 
                     {/* Description */}
-                    <div>
+                    <div className="bg-gradient-to-r from-white/5 to-transparent border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
                         <p className="text-xl text-gray-300 leading-relaxed">
                             {details.description}
                         </p>
@@ -249,14 +252,14 @@ const SkillDetailModal = ({ skill, onClose }) => {
 
                     {/* Technologies */}
                     <div>
-                        <h3 className="text-2xl font-bold text-[#39ff14] mb-4 uppercase tracking-wider font-tech">
+                        <h3 className="text-2xl font-bold text-[#39ff14] mb-4 uppercase tracking-wider font-tech drop-shadow-[0_0_10px_rgba(57,255,20,0.5)]">
                             💻 Technology Stack
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {details.technologies.map((tech, i) => (
                                 <div
                                     key={i}
-                                    className="bg-white/5 border border-white/10 p-4 hover:bg-white/10 hover:border-[#39ff14]/50 transition-all group"
+                                    className="bg-gradient-to-r from-white/5 to-transparent border border-white/10 p-4 rounded-2xl hover:bg-gradient-to-r hover:from-[#39ff14]/10 hover:to-purple-600/10 hover:border-[#39ff14]/50 hover:shadow-[0_0_20px_rgba(57,255,20,0.2)] hover:scale-105 transition-all duration-300 group backdrop-blur-sm"
                                 >
                                     <span className="text-gray-300 group-hover:text-white transition-colors font-mono">
                                         {tech}
@@ -268,14 +271,14 @@ const SkillDetailModal = ({ skill, onClose }) => {
 
                     {/* Features */}
                     <div>
-                        <h3 className="text-2xl font-bold text-purple-400 mb-4 uppercase tracking-wider font-tech">
+                        <h3 className="text-2xl font-bold text-purple-400 mb-4 uppercase tracking-wider font-tech drop-shadow-[0_0_10px_rgba(147,51,234,0.5)]">
                             ⚡ Key Features
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {details.features.map((feature, i) => (
                                 <div
                                     key={i}
-                                    className="flex items-center gap-3 text-gray-300 bg-purple-900/10 border border-purple-500/20 p-3 hover:bg-purple-900/20 transition-all"
+                                    className="flex items-center gap-3 text-gray-300 bg-gradient-to-r from-purple-900/20 to-transparent border border-purple-500/30 p-4 rounded-2xl hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/10 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:scale-105 transition-all duration-300 backdrop-blur-sm"
                                 >
                                     <span className="text-base">{feature}</span>
                                 </div>
@@ -285,16 +288,16 @@ const SkillDetailModal = ({ skill, onClose }) => {
 
                     {/* Use Cases */}
                     <div>
-                        <h3 className="text-2xl font-bold text-cyan-400 mb-4 uppercase tracking-wider font-tech">
+                        <h3 className="text-2xl font-bold text-cyan-400 mb-4 uppercase tracking-wider font-tech drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]">
                             🎯 Real-World Applications
                         </h3>
                         <div className="space-y-3">
                             {details.useCases.map((useCase, i) => (
                                 <div
                                     key={i}
-                                    className="flex items-start gap-3 bg-cyan-900/10 border-l-4 border-cyan-400 p-4 hover:bg-cyan-900/20 transition-all group"
+                                    className="flex items-start gap-3 bg-gradient-to-r from-cyan-900/20 to-transparent border-l-4 border-cyan-400 rounded-2xl p-4 hover:bg-gradient-to-r hover:from-cyan-600/20 hover:to-blue-600/10 hover:border-l-[#39ff14] hover:shadow-[0_0_20px_rgba(6,182,212,0.2)] hover:scale-105 transition-all duration-300 group backdrop-blur-sm"
                                 >
-                                    <span className="text-cyan-400 font-bold text-lg">→</span>
+                                    <span className="text-cyan-400 font-bold text-lg group-hover:text-[#39ff14] transition-colors">→</span>
                                     <span className="text-gray-300 group-hover:text-white transition-colors">
                                         {useCase}
                                     </span>
@@ -305,7 +308,7 @@ const SkillDetailModal = ({ skill, onClose }) => {
 
                     {/* CTA */}
                     <div className="pt-6 border-t border-white/10">
-                        <button className={`w-full py-5 bg-gradient-to-r ${details.gradient} text-white font-black text-xl uppercase tracking-widest hover:scale-105 transition-transform duration-300 shadow-2xl`}>
+                        <button className={`w-full py-5 bg-gradient-to-r ${details.gradient} text-white font-black text-xl uppercase tracking-widest rounded-full hover:scale-105 hover:shadow-[0_0_40px_rgba(57,255,20,0.5),0_0_80px_rgba(147,51,234,0.3)] transition-all duration-300 shadow-2xl border-2 border-white/20 hover:border-white/40`}>
                             Start Your {skill} Project →
                         </button>
                     </div>

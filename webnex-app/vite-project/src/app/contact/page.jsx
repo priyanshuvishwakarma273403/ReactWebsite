@@ -12,10 +12,9 @@ const SubmitButton = () => {
         <button
             type="submit"
             disabled={pending}
-            className="w-full mt-10 py-6 bg-[#39ff14] text-black font-black text-xl uppercase tracking-[0.2em] hover:bg-white hover:scale-105 transition-all relative overflow-hidden group/btn font-tech shadow-[0_0_40px_rgba(57,255,20,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full mt-10 py-6 bg-transparent text-[#39ff14] border border-[#39ff14] font-black text-xl uppercase tracking-[0.2em] hover:bg-[#39ff14] hover:text-black hover:scale-105 transition-all relative overflow-hidden group/btn font-tech shadow-[0_0_20px_rgba(57,255,20,0.2)] hover:shadow-[0_0_50px_rgba(57,255,20,0.5)] rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
         >
-            <span className="relative z-10">{pending ? 'Transmitting...' : 'Transmit Signal →'}</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 translate-x-[-100%] group-hover/btn:translate-x-0 transition-transform duration-500 z-0"></div>
+            <span className="relative z-10 transition-colors duration-500">{pending ? 'Transmitting...' : 'Transmit Signal →'}</span>
         </button>
     );
 };
@@ -89,10 +88,10 @@ const Contact = () => {
                         {[
                             { l: "Email", v: "hello@webnex.co.in", c: "hover:text-[#39ff14]" },
                             { l: "Phone", v: "+91 98765 43210", c: "hover:text-cyan-400" },
-                            { l: "Studio", v: "Bengaluru, KA", c: "hover:text-purple-400" },
+                            { l: "Studio", v: "Delhi, NSP", c: "hover:text-purple-400" },
                             { l: "Socials", v: "@webnex_agency", c: "hover:text-pink-400" }
                         ].map((item, i) => (
-                            <div key={i} ref={el => contactCardsRef.current[i] = el} className={`p-6 bg-white/5 border border-white/10 backdrop-blur-sm group cursor-pointer transition-all hover:bg-white/10 hover:scale-105 hover:border-[#39ff14]/50`}>
+                            <div key={i} ref={el => contactCardsRef.current[i] = el} className={`p-6 bg-white/5 border border-white/10 backdrop-blur-sm group cursor-pointer transition-all rounded-3xl hover:bg-white/10 hover:scale-105 hover:border-[#39ff14]/50`}>
                                 <div className="text-xs uppercase text-gray-500 font-bold mb-2 tracking-wider">{item.l}</div>
                                 <div className={`text-lg font-bold transition-colors ${item.c}`}>{item.v}</div>
                             </div>
@@ -104,42 +103,45 @@ const Contact = () => {
                     <form
                         ref={formRef}
                         action={formAction}
-                        className="bg-gray-900/90 backdrop-blur-md p-8 md:p-12 border-2 border-[#39ff14]/50 relative overflow-hidden group shadow-[0_0_50px_rgba(57,255,20,0.2)]"
+                        className="bg-gray-900/40 backdrop-blur-2xl p-8 md:p-12 border border-white/10 relative overflow-hidden group shadow-[0_0_80px_rgba(0,0,0,0.5)] rounded-[2.5rem]"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#39ff14]/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#39ff14]/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none"></div>
 
-                        <h3 ref={el => formFieldsRef.current[0] = el} className="text-3xl font-tech font-bold mb-8 uppercase text-white relative z-10">
+                        <h3 ref={el => formFieldsRef.current[0] = el} className="text-3xl font-tech font-bold mb-8 uppercase text-white relative z-10 tracking-widest drop-shadow-lg">
                             Initiate Sequence
                         </h3>
 
                         <div className="space-y-6 relative z-10">
                             <div ref={el => formFieldsRef.current[1] = el}>
-                                <label className="block text-sm font-mono text-gray-400 mb-2 uppercase tracking-wider">Name Request</label>
-                                <input name="name" required type="text" className="w-full bg-black/50 border-2 border-white/30 py-4 px-4 text-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#39ff14] focus:bg-black/70 transition-all font-mono focus:shadow-[0_0_20px_rgba(57,255,20,0.3)]" placeholder="Enter your name..." style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }} />
-                                {state?.errors?.name && <p className="text-red-500 text-sm mt-1">{state.errors.name}</p>}
+                                <label className="block text-xs font-mono text-gray-400 mb-2 uppercase tracking-[0.2em] ml-2">Name Request</label>
+                                <input name="name" required type="text" className="w-full bg-white/5 border border-white/10 py-5 px-6 text-xl text-white placeholder-white/20 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#39ff14]/50 focus:bg-white/10 transition-all duration-300 font-mono focus:shadow-[0_0_30px_rgba(57,255,20,0.1)] backdrop-blur-sm" placeholder="Enter Your Name" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }} />
+                                {state?.errors?.name && <p className="text-red-500 text-xs ml-2 mt-2 font-mono tracking-wider">{state.errors.name}</p>}
                             </div>
 
                             <div ref={el => formFieldsRef.current[2] = el}>
-                                <label className="block text-sm font-mono text-gray-400 mb-2 uppercase tracking-wider">Email Address</label>
-                                <input name="email" required type="email" className="w-full bg-black/50 border-2 border-white/30 py-4 px-4 text-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#39ff14] focus:bg-black/70 transition-all font-mono focus:shadow-[0_0_20px_rgba(57,255,20,0.3)]" placeholder="your.email@example.com" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }} />
-                                {state?.errors?.email && <p className="text-red-500 text-sm mt-1">{state.errors.email}</p>}
+                                <label className="block text-xs font-mono text-gray-400 mb-2 uppercase tracking-[0.2em] ml-2">Email Address</label>
+                                <input name="email" required type="email" className="w-full bg-white/5 border border-white/10 py-5 px-6 text-xl text-white placeholder-white/20 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#39ff14]/50 focus:bg-white/10 transition-all duration-300 font-mono focus:shadow-[0_0_30px_rgba(57,255,20,0.1)] backdrop-blur-sm" placeholder="Enter Your Email" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }} />
+                                {state?.errors?.email && <p className="text-red-500 text-xs ml-2 mt-2 font-mono tracking-wider">{state.errors.email}</p>}
                             </div>
 
                             <div ref={el => formFieldsRef.current[3] = el}>
-                                <label className="block text-sm font-mono text-gray-400 mb-2 uppercase tracking-wider">Mission Type</label>
-                                <select name="missionType" className="w-full bg-black/50 border-2 border-white/30 py-4 px-4 text-xl text-white focus:outline-none focus:border-[#39ff14] focus:bg-black/70 transition-all font-mono cursor-pointer focus:shadow-[0_0_20px_rgba(57,255,20,0.3)]" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>
-                                    <option className="bg-gray-900 text-white py-2" value="General">Select Mission Type</option>
-                                    <option className="bg-gray-900 text-white py-2" value="Full Scale Development">Full Scale Development</option>
-                                    <option className="bg-gray-900 text-white py-2" value="UI/UX Overhaul">UI/UX Overhaul</option>
-                                    <option className="bg-gray-900 text-white py-2" value="Brand Identity">Brand Identity</option>
-                                    <option className="bg-gray-900 text-white py-2" value="Consulting">Consulting</option>
-                                </select>
+                                <label className="block text-xs font-mono text-gray-400 mb-2 uppercase tracking-[0.2em] ml-2">Mission Type</label>
+                                <div className="relative">
+                                    <select name="missionType" className="w-full bg-white/5 border border-white/10 py-5 px-6 text-xl text-white rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#39ff14]/50 focus:bg-white/10 transition-all duration-300 font-mono cursor-pointer appearance-none backdrop-blur-sm" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>
+                                        <option className="bg-black text-gray-500" value="General">SELECT PROTOCOL</option>
+                                        <option className="bg-black text-white" value="Full Scale Development">FULL SCALE DEVELOPMENT</option>
+                                        <option className="bg-black text-white" value="UI/UX Overhaul">UI/UX OVERHAUL</option>
+                                        <option className="bg-black text-white" value="Brand Identity">BRAND IDENTITY</option>
+                                        <option className="bg-black text-white" value="Consulting">CONSULTING</option>
+                                    </select>
+                                    <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-[#39ff14]">▼</div>
+                                </div>
                             </div>
 
                             <div ref={el => formFieldsRef.current[4] = el}>
-                                <label className="block text-sm font-mono text-gray-400 mb-2 uppercase tracking-wider">Mission Brief</label>
-                                <textarea name="message" className="w-full bg-black/50 border-2 border-white/30 py-4 px-4 text-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#39ff14] focus:bg-black/70 transition-all font-mono h-32 resize-none focus:shadow-[0_0_20px_rgba(57,255,20,0.3)]" placeholder="Tell us about your project..." style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}></textarea>
-                                {state?.errors?.message && <p className="text-red-500 text-sm mt-1">{state.errors.message}</p>}
+                                <label className="block text-xs font-mono text-gray-400 mb-2 uppercase tracking-[0.2em] ml-2">Mission Brief</label>
+                                <textarea name="message" className="w-full bg-white/5 border border-white/10 py-5 px-6 text-xl text-white placeholder-white/20 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#39ff14]/50 focus:bg-white/10 transition-all duration-300 font-mono h-40 resize-none focus:shadow-[0_0_30px_rgba(57,255,20,0.1)] backdrop-blur-sm" placeholder="PLEASE DETAIL OBJECTIVES..." style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}></textarea>
+                                {state?.errors?.message && <p className="text-red-500 text-xs ml-2 mt-2 font-mono tracking-wider">{state.errors.message}</p>}
                             </div>
                         </div>
 
@@ -147,7 +149,7 @@ const Contact = () => {
                             <SubmitButton />
                         </div>
                         {state?.message && !state?.success && (
-                            <div className="mt-4 text-center text-red-500 font-mono text-sm uppercase tracking-widest">{state.message}</div>
+                            <div className="mt-6 text-center text-red-500 font-mono text-xs uppercase tracking-[0.2em] border border-red-500/20 py-2 rounded-lg bg-red-900/10">{state.message}</div>
                         )}
                     </form>
                 </div>
