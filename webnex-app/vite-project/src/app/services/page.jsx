@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { X, Check, ArrowRight, Zap, Shield, TrendingUp, Clock, Users, Award, Rocket } from 'lucide-react';
 // import javaLogo from '../assets/java.png'; // Replaced with static path
 
+import SkillDetailModal from '@/components/SkillDetailModal';
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
@@ -183,6 +184,7 @@ const Services = () => {
                             key={i}
                             ref={el => serviceCardsRef.current[i] = el}
                             className={`service-card group relative h-[450px] p-10 rounded-[2.5rem] bg-gradient-to-br ${s.color} border border-white/10 backdrop-blur-xl transition-all duration-500 cursor-pointer overflow-hidden ${s.border}`}
+                            onClick={() => setSelectedService(s.title)}
                         >
                             <div className="relative z-10 h-full flex flex-col">
                                 <div className="mb-8 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 origin-left">
@@ -228,6 +230,14 @@ const Services = () => {
                     </button>
                 </div>
             </div>
+
+            {/* Skill Detail Modal */}
+            {selectedService && (
+                <SkillDetailModal
+                    skill={selectedService}
+                    onClose={() => setSelectedService(null)}
+                />
+            )}
         </div>
     );
 };
