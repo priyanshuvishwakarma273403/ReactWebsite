@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { X, ExternalLink, Github } from 'lucide-react';
+import ProjectDetailModal from '@/components/ProjectDetailModal';
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -19,7 +20,8 @@ const Projects = () => {
             title: 'TradeNova HFT',
             category: 'High-Frequency Trading',
             video: 'https://cdn.coverr.co/videos/coverr-digital-code-background-3467/1080p.mp4',
-            poster: '/assets/img4.png',
+            poster: '/assets/img12.png',
+            gallery: ['/assets/img12.png', '/assets/img16.png', '/assets/img24.png', '/assets/img4.png'],
             description: 'Ultra-low latency Java trading engine. Optimized for 1M+ transactions/sec using LMAX Disruptor and Zero-GC techniques.',
             tech: ['Java 21', 'Spring Boot', 'Kafka', 'Redis', 'Aeron'],
             impact: 'Sub-10ms Latency',
@@ -30,7 +32,8 @@ const Projects = () => {
             title: 'Spring Cloud Mesh',
             category: 'Distributed Systems',
             video: 'https://cdn.coverr.co/videos/coverr-online-shopping-on-a-laptop-4518/1080p.mp4',
-            poster: '/assets/img11.png',
+            poster: '/assets/img13.png',
+            gallery: ['/assets/img13.png', '/assets/img17.png', '/assets/img20.png', '/assets/img11.png'],
             description: 'Enterprise Microservices Mesh. Automated scaling, self-healing, and dynamic routing for 500+ service nodes.',
             tech: ['Spring Cloud', 'Kubernetes', 'Docker', 'PostgreSQL'],
             impact: '99.999% Service Avail.',
@@ -41,7 +44,8 @@ const Projects = () => {
             title: 'AI Pulse Insight',
             category: 'Predictive Analytics',
             video: 'https://cdn.coverr.co/videos/coverr-abstract-blue-and-purple-futuristic-background-9895/1080p.mp4',
-            poster: '/assets/img1.png',
+            poster: '/assets/img14.png',
+            gallery: ['/assets/img14.png', '/assets/img18.png', '/assets/img21.png', '/assets/img1.png'],
             description: 'Real-time AI monitoring for Java architectures. Detects anomalies and performance bottlenecks before they occur.',
             tech: ['React', 'TensorFlow', 'Java', 'Prometheus'],
             impact: '40% Cost Optimized',
@@ -129,7 +133,8 @@ const Projects = () => {
                         <div
                             key={p.id}
                             ref={el => projectsListRef.current[i] = el}
-                            className="group relative flex flex-col lg:flex-row items-center gap-12 lg:gap-24"
+                            className="group relative flex flex-col lg:flex-row items-center gap-12 lg:gap-24 cursor-pointer"
+                            onClick={() => setSelectedProject(p)}
                         >
                             {/* Ghost Number */}
                             <div className="absolute -left-20 top-0 text-[20rem] font-black text-white/[0.03] select-none pointer-events-none hidden lg:block">
@@ -149,7 +154,7 @@ const Projects = () => {
                                 </div>
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/40 backdrop-blur-sm">
                                     <div className="px-8 py-4 bg-white text-black font-black uppercase tracking-widest rounded-full hover:scale-110 transition-transform">
-                                        View Case Study
+                                        Click for View
                                     </div>
                                 </div>
                             </div>
@@ -185,6 +190,14 @@ const Projects = () => {
                     ))}
                 </div>
             </div>
+
+            {/* Project Detail Modal */}
+            {selectedProject && (
+                <ProjectDetailModal
+                    project={selectedProject}
+                    onClose={() => setSelectedProject(null)}
+                />
+            )}
         </div>
     );
 };

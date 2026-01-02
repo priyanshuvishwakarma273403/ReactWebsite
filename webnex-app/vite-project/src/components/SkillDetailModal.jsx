@@ -1,9 +1,27 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 const javaLogo = '/assets/java.png';
 
 const SkillDetailModal = ({ skill, onClose }) => {
+
+    // Disable background scrolling completely
+    useEffect(() => {
+        const html = document.documentElement;
+        const body = document.body;
+
+        const prevHtml = html.style.overflow;
+        const prevBody = body.style.overflow;
+
+        html.style.overflow = "hidden";
+        body.style.overflow = "hidden";
+
+        return () => {
+            html.style.overflow = prevHtml;
+            body.style.overflow = prevBody;
+        };
+    }, []);
+
     if (!skill) return null;
 
     const skillDetails = {
@@ -39,6 +57,38 @@ const SkillDetailModal = ({ skill, onClose }) => {
             ],
             gradient: "from-blue-600 via-blue-500 to-cyan-400"
         },
+        "Java Backend Mastery": {
+            icon: javaLogo,
+            isImage: true,
+            title: "Java Backend Mastery",
+            tagline: "Enterprise-Grade Power Systems",
+            description: "We architect bulletproof backend systems using cutting-edge Java technologies that scale to millions of users.",
+            technologies: [
+                "Spring Boot & Spring Cloud",
+                "Microservices Architecture",
+                "Hibernate & JPA",
+                "RESTful APIs & GraphQL",
+                "PostgreSQL, MySQL, MongoDB",
+                "Redis & Caching Strategies",
+                "Apache Kafka & RabbitMQ",
+                "Docker & Kubernetes"
+            ],
+            features: [
+                "🚀 High-performance, scalable systems",
+                "🔒 Bank-grade security implementations",
+                "⚡ Real-time data processing",
+                "📊 Advanced analytics & reporting",
+                "🔄 CI/CD pipeline automation",
+                "☁️ Cloud-native deployments (AWS, Azure)"
+            ],
+            useCases: [
+                "E-commerce platforms handling 1M+ transactions/day",
+                "Financial systems with real-time processing",
+                "Enterprise resource planning (ERP) solutions",
+                "Healthcare management systems"
+            ],
+            gradient: "from-orange-500 via-red-500 to-yellow-500"
+        },
         "React & Next.js": {
             icon: "⚛️",
             title: "React & Next.js Development",
@@ -69,6 +119,37 @@ const SkillDetailModal = ({ skill, onClose }) => {
                 "Social media platforms & communities"
             ],
             gradient: "from-purple-600 via-pink-500 to-rose-400"
+        },
+        "Next.js Frontend": {
+            icon: "🚀",
+            title: "Next.js Frontend Architecture",
+            tagline: "Blazing Fast Web Experiences",
+            description: "Building blazing-fast, SEO-optimized web applications with the latest React ecosystem and server-side rendering.",
+            technologies: [
+                "React 18+ with Hooks",
+                "Next.js 14 (App Router)",
+                "TypeScript",
+                "Tailwind CSS & Styled Components",
+                "Redux Toolkit & Zustand",
+                "React Query & SWR",
+                "Framer Motion & GSAP",
+                "Vercel & Netlify Deployment"
+            ],
+            features: [
+                "⚡ Ultra-fast page loads (<1s)",
+                "🎨 Pixel-perfect responsive design",
+                "📱 Progressive Web Apps (PWA)",
+                "🔍 SEO optimized architecture",
+                "♿ WCAG accessibility compliance",
+                "🎭 Smooth animations & interactions"
+            ],
+            useCases: [
+                "SaaS dashboards with real-time data",
+                "E-commerce storefronts with high conversion",
+                "Marketing websites with perfect SEO",
+                "Social media platforms & communities"
+            ],
+            gradient: "from-cyan-500 via-blue-500 to-indigo-500"
         },
         "WebGL & 3D": {
             icon: "🎮",
@@ -101,98 +182,191 @@ const SkillDetailModal = ({ skill, onClose }) => {
             ],
             gradient: "from-green-600 via-emerald-500 to-teal-400"
         },
-        "Motion Design": {
-            icon: "🎬",
-            title: "Motion Design & Animation",
-            tagline: "Visual Storytelling Excellence",
-            description: "Crafting stunning animations and motion graphics that captivate users and bring brands to life.",
+        "3D & Immersive Web": {
+            icon: "🧊",
+            title: "3D & Immersive Web",
+            tagline: "Interactive Digital Dimensions",
+            description: "Creating jaw-dropping 3D experiences and interactive visualizations that push the boundaries of web technology.",
             technologies: [
-                "GSAP (GreenSock)",
-                "Framer Motion",
-                "Lottie Animations",
-                "CSS Animations & Keyframes",
-                "After Effects Integration",
-                "SVG Animations (Anime.js)",
-                "Scroll-triggered Animations",
-                "Micro-interactions"
+                "Three.js & React Three Fiber",
+                "WebGL & WebGPU",
+                "GLSL Shaders",
+                "Blender & 3D Modeling",
+                "Physics Engines (Cannon.js, Rapier)",
+                "Post-processing Effects",
+                "AR/VR Integration (WebXR)",
+                "Optimized 3D Asset Loading"
             ],
             features: [
-                "🎭 Smooth 60fps animations",
-                "📜 Scroll-based storytelling",
-                "🎨 Brand motion systems",
-                "✨ Micro-interaction design",
-                "📱 Mobile-optimized performance",
-                "🎪 Interactive narratives"
+                "🎨 Photorealistic 3D rendering",
+                "🎮 Interactive 3D environments",
+                "🌈 Custom shader effects",
+                "📦 Optimized 3D model loading",
+                "🎯 High-performance animations",
+                "🥽 AR/VR ready experiences"
             ],
             useCases: [
-                "Hero sections with parallax effects",
-                "Product launch pages",
-                "Animated brand identities",
-                "Storytelling landing pages"
+                "Product configurators & visualizers",
+                "Virtual showrooms & galleries",
+                "Interactive data visualizations",
+                "Gaming experiences in browser"
             ],
-            gradient: "from-pink-600 via-purple-500 to-indigo-400"
+            gradient: "from-purple-600 via-pink-500 to-rose-400"
+        },
+        "Cyber Security": {
+            icon: "🛡️",
+            title: "Cyber Security & Auditing",
+            tagline: "Bank-Grade Digital Protection",
+            description: "Comprehensive security solutions protecting your digital assets with enterprise-grade encryption and penetration testing.",
+            technologies: [
+                "Penetration Testing Tools",
+                "OAuth 2.0 & OIDC",
+                "SSL/TLS Encryption",
+                "WAF Implementation",
+                "Security Auditing",
+                "Identity Management",
+                "GDPR & HIPAA Compliance",
+                "Zero Trust Architecture"
+            ],
+            features: [
+                "🔒 End-to-end encryption",
+                "🕵️ Real-time threat monitoring",
+                "🛡️ DDoS protection",
+                "🔑 Secure authentication flows",
+                "📝 Automated security audits",
+                "🚫 Vulnerability scanning"
+            ],
+            useCases: [
+                "FinTech application security",
+                "Healthcare data protection",
+                "Enterprise identity management",
+                "Secure payment processing"
+            ],
+            gradient: "from-green-500 via-emerald-600 to-teal-500"
+        },
+        "Cloud Infrastructure": {
+            icon: "☁️",
+            title: "Cloud Infrastructure & DevOps",
+            tagline: "Scalable Serverless Architecture",
+            description: "Designing and managing robust cloud infrastructures that ensure high availability, scalability, and cost-efficiency.",
+            technologies: [
+                "AWS (EC2, Lambda, S3)",
+                "Google Cloud Platform",
+                "Docker & Kubernetes",
+                "Terraform (IaC)",
+                "CI/CD (GitHub Actions, Jenkins)",
+                "Prometheus & Grafana",
+                "Serverless Framework",
+                "Nginx & Load Balancing"
+            ],
+            features: [
+                "📈 Auto-scaling capabilities",
+                "🌍 Global content delivery (CDN)",
+                "🔄 Automated deployment pipelines",
+                "💰 Cost optimization strategies",
+                "🛡️ Cloud security best practices",
+                "⏱️ 99.99% Uptime SLAs"
+            ],
+            useCases: [
+                "High-traffic web applications",
+                "Microservices orchestration",
+                "Big data processing pipelines",
+                "Global enterprise networks"
+            ],
+            gradient: "from-blue-500 via-indigo-600 to-violet-500"
         },
         "Cloud Ops": {
             icon: "☁️",
-            title: "Cloud Operations & DevOps",
-            tagline: "AWS / Azure Scaling Mastery",
-            description: "Architecting and managing cloud infrastructure that auto-scales, self-heals, and delivers 99.99% uptime.",
+            title: "Cloud Operations",
+            tagline: "Scalable Serverless Architecture",
+            description: "Designing and managing robust cloud infrastructures that ensure high availability, scalability, and cost-efficiency.",
             technologies: [
-                "AWS (EC2, S3, Lambda, RDS)",
-                "Azure Cloud Services",
+                "AWS (EC2, Lambda, S3)",
+                "Google Cloud Platform",
                 "Docker & Kubernetes",
-                "Terraform & Infrastructure as Code",
+                "Terraform (IaC)",
                 "CI/CD (GitHub Actions, Jenkins)",
-                "Monitoring (Prometheus, Grafana)",
-                "Load Balancing & Auto-scaling",
-                "CloudFormation & ARM Templates"
+                "Prometheus & Grafana",
+                "Serverless Framework",
+                "Nginx & Load Balancing"
             ],
             features: [
-                "☁️ Multi-cloud deployments",
-                "🔄 Zero-downtime deployments",
-                "📊 Real-time monitoring & alerts",
-                "🔧 Auto-scaling & load balancing",
-                "💾 Automated backups & disaster recovery",
-                "🔒 Security best practices"
+                "📈 Auto-scaling capabilities",
+                "🌍 Global content delivery (CDN)",
+                "🔄 Automated deployment pipelines",
+                "💰 Cost optimization strategies",
+                "🛡️ Cloud security best practices",
+                "⏱️ 99.99% Uptime SLAs"
             ],
             useCases: [
-                "High-traffic applications (1M+ users)",
-                "Global content delivery networks",
-                "Serverless microservices architecture",
-                "Big data processing pipelines"
+                "High-traffic web applications",
+                "Microservices orchestration",
+                "Big data processing pipelines",
+                "Global enterprise networks"
             ],
-            gradient: "from-orange-600 via-amber-500 to-yellow-400"
+            gradient: "from-orange-500 via-amber-600 to-yellow-500"
         },
-        "Cyber Security": {
-            icon: "🔒",
-            title: "Cyber Security Solutions",
-            tagline: "Bank-Grade Protection",
-            description: "Implementing military-grade security measures to protect your digital assets from modern cyber threats.",
+        "Creative UI/UX": {
+            icon: "🎨",
+            title: "Creative UI/UX Design",
+            tagline: "Human-Centered Digital Art",
+            description: "Crafting intuitive and visually stunning user interfaces that drive engagement and deliver exceptional user experiences.",
             technologies: [
-                "OAuth 2.0 & JWT",
-                "SSL/TLS Encryption",
-                "Web Application Firewalls (WAF)",
-                "Penetration Testing Tools",
-                "OWASP Security Standards",
-                "DDoS Protection",
-                "Security Auditing & Compliance",
-                "Blockchain Security"
+                "Figma & Adobe XD",
+                "Adobe Creative Suite",
+                "Prototyping & Wireframing",
+                "User Research & Personas",
+                "Interaction Design",
+                "Design Systems",
+                "Accessibility Standards",
+                "Usability Testing"
             ],
             features: [
-                "🛡️ Multi-layer security architecture",
-                "🔐 End-to-end encryption",
-                "🚨 Real-time threat detection",
-                "📋 Compliance (GDPR, HIPAA, PCI-DSS)",
-                "🔍 Regular security audits",
-                "🔑 Advanced authentication systems"
+                "✨ Pixel-perfect visual design",
+                "🧠 Intuitive information architecture",
+                "📱 Mobile-first approach",
+                "♿ Inclusive design practices",
+                "🔄 Iterative design process",
+                "📊 Data-driven design decisions"
             ],
             useCases: [
-                "Financial & banking applications",
-                "Healthcare data management",
-                "E-commerce payment gateways",
-                "Enterprise security infrastructure"
+                "Mobile app interfaces",
+                "Complex web dashboards",
+                "E-commerce user journeys",
+                "Brand identity systems"
             ],
-            gradient: "from-red-600 via-rose-500 to-pink-400"
+            gradient: "from-pink-500 via-rose-500 to-purple-500"
+        },
+        "Motion Design": {
+            icon: "🎬",
+            title: "Motion Design & Animation",
+            tagline: "Bringing Interfaces to Life",
+            description: "Adding fluid motion and captivating animations to web experiences to guide users and create moments of delight.",
+            technologies: [
+                "Framer Motion",
+                "GSAP (GreenSock)",
+                "Lottie Animations",
+                "CSS Animations & Transitions",
+                "SVG Animation",
+                "Canvas API",
+                "After Effects",
+                "Rive"
+            ],
+            features: [
+                "🌊 Fluid page transitions",
+                "👆 Micro-interactions",
+                "🎭 Complex scroll animations",
+                "✨ Particle effects",
+                "📦 SVG morphing",
+                "🚀 Performance-optimized motion"
+            ],
+            useCases: [
+                "Interactive storytelling",
+                "Loading sequences",
+                "Data visualization animations",
+                "Brand motion languages"
+            ],
+            gradient: "from-pink-500 via-purple-500 to-indigo-500"
         }
     };
 
@@ -200,115 +374,105 @@ const SkillDetailModal = ({ skill, onClose }) => {
     if (!details) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fadeIn">
-            {/* Backdrop */}
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+
+            {/* BACKDROP */}
             <div
                 className="absolute inset-0 bg-black/95 backdrop-blur-md"
                 onClick={onClose}
-            ></div>
+            />
 
-            {/* Modal Content */}
-            <div className="relative bg-gradient-to-br from-gray-900/95 via-black/95 to-gray-900/95 backdrop-blur-2xl border-2 border-[#39ff14]/30 max-w-5xl w-full max-h-[90vh] overflow-y-auto rounded-[2.5rem] shadow-[0_0_80px_rgba(57,255,20,0.3),0_0_120px_rgba(147,51,234,0.2)] animate-slideUp">
+            {/* MODAL */}
+            <div
+                onWheelCapture={(e) => e.stopPropagation()}
+                className="relative 
+                bg-gradient-to-br from-gray-900/95 via-black/95 to-gray-900/95
+                backdrop-blur-2xl 
+                border-2 border-[#39ff14]/30
+                max-w-5xl w-full
+                max-h-[90vh]
+                overflow-y-auto
+                overscroll-contain
+                pointer-events-auto
+                rounded-[2.5rem]
+                shadow-[0_0_80px_rgba(57,255,20,0.3),0_0_120px_rgba(147,51,234,0.2)]
+                animate-slideUp"
+            >
 
-                {/* Header with Gradient */}
-                <div className={`bg-gradient-to-r ${details.gradient} p-8 relative overflow-hidden rounded-t-[2.5rem]`}>
-                    <div className="absolute inset-0 bg-black/30 backdrop-blur-sm pointer-events-none"></div>
+                {/* HEADER */}
+                <div className={`bg-gradient-to-r ${details.gradient} p-8 relative rounded-t-[2.5rem]`}>
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             onClose();
                         }}
-                        className="absolute top-6 right-6 z-50 p-3 bg-black/60 hover:bg-[#39ff14] rounded-full transition-all hover:rotate-90 duration-300 border border-white/20 hover:border-[#39ff14] shadow-lg hover:shadow-[0_0_20px_rgba(57,255,20,0.6)] cursor-pointer"
+                        className="absolute top-6 right-6 z-50 p-3 bg-black/60 hover:bg-[#39ff14] rounded-full border border-white/20 hover:border-[#39ff14] transition-all"
                     >
-                        <X className="w-6 h-6 text-white pointer-events-none" />
+                        <X className="w-6 h-6 text-white" />
                     </button>
 
-                    <div className="relative z-10">
-                        <div className="mb-4">
-                            {details.isImage ? (
-                                <img src={details.icon} alt={details.title} className="w-24 h-24 object-contain filter drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]" />
-                            ) : (
-                                <div className="text-6xl drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">{details.icon}</div>
-                            )}
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-black uppercase text-white mb-2 font-tech drop-shadow-lg">
-                            {details.title}
-                        </h2>
-                        <p className="text-xl text-white/95 font-light italic drop-shadow-md">
-                            {details.tagline}
-                        </p>
-                    </div>
+                    <h2 className="text-4xl md:text-5xl font-black uppercase text-white mb-2">
+                        {details.title}
+                    </h2>
+                    <p className="text-xl text-white/95 italic">
+                        {details.tagline}
+                    </p>
                 </div>
 
-                {/* Content */}
+                {/* CONTENT */}
                 <div className="p-8 space-y-8">
 
-                    {/* Description */}
-                    <div className="bg-gradient-to-r from-white/5 to-transparent border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                        <p className="text-xl text-gray-300 leading-relaxed">
-                            {details.description}
-                        </p>
+                    {/* DESCRIPTION */}
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+                        <p className="text-xl text-gray-300 leading-relaxed">{details.description}</p>
                     </div>
 
-                    {/* Technologies */}
+                    {/* TECH */}
                     <div>
-                        <h3 className="text-2xl font-bold text-[#39ff14] mb-4 uppercase tracking-wider font-tech drop-shadow-[0_0_10px_rgba(57,255,20,0.5)]">
+                        <h3 className="text-2xl font-bold text-[#39ff14] mb-4 uppercase">
                             💻 Technology Stack
                         </h3>
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {details.technologies.map((tech, i) => (
-                                <div
-                                    key={i}
-                                    className="bg-gradient-to-r from-white/5 to-transparent border border-white/10 p-4 rounded-2xl hover:bg-gradient-to-r hover:from-[#39ff14]/10 hover:to-purple-600/10 hover:border-[#39ff14]/50 hover:shadow-[0_0_20px_rgba(57,255,20,0.2)] hover:scale-105 transition-all duration-300 group backdrop-blur-sm"
-                                >
-                                    <span className="text-gray-300 group-hover:text-white transition-colors font-mono">
-                                        {tech}
-                                    </span>
+                            {details.technologies.map((t, i) => (
+                                <div key={i} className="bg-white/5 border border-white/10 p-4 rounded-2xl text-gray-300">
+                                    {t}
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    {/* Features */}
+                    {/* FEATURES */}
                     <div>
-                        <h3 className="text-2xl font-bold text-purple-400 mb-4 uppercase tracking-wider font-tech drop-shadow-[0_0_10px_rgba(147,51,234,0.5)]">
+                        <h3 className="text-2xl font-bold text-purple-400 mb-4 uppercase">
                             ⚡ Key Features
                         </h3>
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {details.features.map((feature, i) => (
-                                <div
-                                    key={i}
-                                    className="flex items-center gap-3 text-gray-300 bg-gradient-to-r from-purple-900/20 to-transparent border border-purple-500/30 p-4 rounded-2xl hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/10 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:scale-105 transition-all duration-300 backdrop-blur-sm"
-                                >
-                                    <span className="text-base">{feature}</span>
+                            {details.features.map((f, i) => (
+                                <div key={i} className="bg-purple-900/20 border border-purple-500/30 p-4 rounded-2xl text-gray-300">
+                                    {f}
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    {/* Use Cases */}
+                    {/* USE CASES */}
                     <div>
-                        <h3 className="text-2xl font-bold text-cyan-400 mb-4 uppercase tracking-wider font-tech drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]">
+                        <h3 className="text-2xl font-bold text-cyan-400 mb-4 uppercase">
                             🎯 Real-World Applications
                         </h3>
-                        <div className="space-y-3">
-                            {details.useCases.map((useCase, i) => (
-                                <div
-                                    key={i}
-                                    className="flex items-start gap-3 bg-gradient-to-r from-cyan-900/20 to-transparent border-l-4 border-cyan-400 rounded-2xl p-4 hover:bg-gradient-to-r hover:from-cyan-600/20 hover:to-blue-600/10 hover:border-l-[#39ff14] hover:shadow-[0_0_20px_rgba(6,182,212,0.2)] hover:scale-105 transition-all duration-300 group backdrop-blur-sm"
-                                >
-                                    <span className="text-cyan-400 font-bold text-lg group-hover:text-[#39ff14] transition-colors">→</span>
-                                    <span className="text-gray-300 group-hover:text-white transition-colors">
-                                        {useCase}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
+
+                        {details.useCases.map((u, i) => (
+                            <div key={i} className="text-gray-300 bg-cyan-900/20 border-l-4 border-cyan-400 rounded-2xl p-4 mb-2">
+                                {u}
+                            </div>
+                        ))}
                     </div>
 
                     {/* CTA */}
                     <div className="pt-6 border-t border-white/10">
-                        <button className={`w-full py-5 bg-gradient-to-r ${details.gradient} text-white font-black text-xl uppercase tracking-widest rounded-full hover:scale-105 hover:shadow-[0_0_40px_rgba(57,255,20,0.5),0_0_80px_rgba(147,51,234,0.3)] transition-all duration-300 shadow-2xl border-2 border-white/20 hover:border-white/40`}>
+                        <button className={`w-full py-5 bg-gradient-to-r ${details.gradient} text-white font-black text-xl uppercase rounded-full`}>
                             Start Your {skill} Project →
                         </button>
                     </div>
